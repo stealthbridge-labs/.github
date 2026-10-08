@@ -10,7 +10,7 @@
 
 **Building the infrastructure for a more private, interoperable world of cross-border payments on Stellar.**
 
-[Explore our repositories](https://github.com/orgs/stealthbridge-labs/repositories) · [How to contribute](https://github.com/stealthbridge-labs/.github/blob/main/CONTRIBUTING.md) · [Engineering roadmap](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/ROADMAP-v0.2.md) · [View open issues](https://github.com/search?q=org%3Astealthbridge-labs+is%3Aissue+is%3Aopen&type=issues)
+[Explore our repositories](https://github.com/orgs/stealthbridge-labs/repositories) · [How to contribute](https://github.com/stealthbridge-labs/.github/blob/main/CONTRIBUTING.md) · [Engineering roadmaps](https://github.com/stealthbridge-labs/.github#engineering-roadmaps) · [View open issues](https://github.com/search?q=org%3Astealthbridge-labs+is%3Aissue+is%3Aopen&type=issues)
 
 ![Stellar](https://img.shields.io/badge/Stellar-Testnet-101c2b?style=flat-square)
 ![Rust](https://img.shields.io/badge/Backend-Rust%20%2F%20Axum-101c2b?style=flat-square)
@@ -81,6 +81,17 @@ flowchart TB
 
 **Important:** The privacy flows shown here are *target architecture*, not connected fund-moving implementations. Confidential Tokens and Stellar Private Payments have different properties and are being evaluated independently; we do not presume they compose into one atomic transfer.
 
+## Engineering roadmaps
+
+Each major StealthBridge component maintains its own extensive, implementation-focused engineering plan. These describe the destination and exit criteria—not guarantees of production readiness.
+
+| Repository | Detailed plan |
+| :-- | :-- |
+| Frontend | [Product flows, wallet UX, design system, observability, accessibility](https://github.com/stealthbridge-labs/stealthbridge-frontend/blob/main/ROADMAP.md) |
+| Backend | [Multi-tenancy, ledger observation, durable settlement, provider reconciliation](https://github.com/stealthbridge-labs/stealthbridge-backend/blob/main/ROADMAP.md) |
+| Contracts | [Soroban governance, ZK feasibility, confidential stablecoin security, deployment](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/ROADMAP.md) |
+| SDK | [Typed APIs, protocol adapters, wallet-owned signing and release compatibility](https://github.com/stealthbridge-labs/stealthbridge-sdk/blob/main/ROADMAP.md) |
+
 ## What we're engineering toward
 
 - **Confidential stablecoin settlement** — investigate issuer-controlled confidential amounts, balance protection, access policies, selective disclosure, and redemption considerations.
@@ -127,7 +138,7 @@ Our documentation standard is simple: **be precise about what is implemented, de
 
 StealthBridge is developed in public. Explore the source, follow engineering progress, and contribute through scoped issues and reviewed pull requests.
 
-For more detail, see the [architecture RFC](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/RFC-0001-PLATFORM-ARCHITECTURE.md), [threat model](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/THREAT-MODEL-v0.2.md), [privacy feasibility matrix](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/PRIVACY-FEASIBILITY-MATRIX.md) and [roadmap](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/ROADMAP-v0.2.md).
+For more detail, see the [architecture RFC](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/RFC-0001-PLATFORM-ARCHITECTURE.md), [threat model](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/THREAT-MODEL-v0.2.md), [privacy feasibility matrix](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/PRIVACY-FEASIBILITY-MATRIX.md) and [roadmap](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/ROADMAP.md).
 
 ---
 
