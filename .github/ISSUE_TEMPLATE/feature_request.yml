@@ -1,0 +1,37 @@
+name: Improvement proposal
+description: Propose scoped engineering, UX, security-research or documentation work.
+title: "[Proposal] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Distinguish proposed features from those independently verified. Significant contract/security changes need an ADR. Proposals do not authorize deployment or credential use.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and intended outcome
+      description: Who is this for and what does it solve?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Proposed scope
+      description: List changes, affected repositories, dependencies and excluded work.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Testable acceptance criteria
+      description: What evidence would establish that this is complete?
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Privacy, security, network and funds considerations
+      description: Explain any implications for wallets, witnesses, proof inputs, custody, on-chain state or fiat providers; say "Not applicable" when none.
+    validations:
+      required: true

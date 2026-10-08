@@ -1,0 +1,40 @@
+name: Bug report
+description: Report a reproducible non-security problem in StealthBridge.
+title: "[Bug] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        StealthBridge is testnet research. Do not paste wallet seeds, private keys, notes, proof witnesses, KYC, credentials or security exploits. Use SECURITY.md for vulnerability disclosures.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the observed behavior and impacted app/endpoint/contract.
+      placeholder: "When the Business screen loads without a reachable backend, ..."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to reproduce
+      description: Include safe, non-sensitive steps, branch/commit and public testnet information.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Environment and version
+      placeholder: "Commit hash, SDK/Node/Rust version, browser"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Redacted logs and screenshots
+      description: Please scrub secrets, private financial information and participant identities.
