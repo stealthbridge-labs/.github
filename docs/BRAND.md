@@ -1,41 +1,22 @@
-# StealthBridge Brand and Product Language
+# StealthBridge brand system
 
-**Name:** StealthBridge
+## Master wordmark
+The **horizontal lockup** in [`assets/stealthbridge-logo.svg`](../assets/stealthbridge-logo.svg) places the original cyan-to-mint ribbon at the left of the StealthBridge name and tagline. Use it in README headers, press material and community documentation. Keep the visual proportions intact; for GitHub use an image width of around 640–760 pixels.
 
-**Tagline:** Confidential payments. Without borders.
+## Compact mark
+[`assets/stealthbridge-symbol.svg`](../assets/stealthbridge-symbol.svg) contains the same ribbon alone, for favicons, app navigation and square avatars.
+
+## Product language
+**StealthBridge** · *Confidential payments. Without borders.*
+
+- **StealthBridge Business** — confidential institutional settlement experiences.
+- **StealthBridge Send** — privacy-conscious international remittances.
+- **StealthBridge Platform** — shared payment and developer infrastructure.
+- **StealthBridge SDK** — integrations for engineers.
 
 **Editorial line:** Move value. Not exposure.
 
-**Mission:** Build privacy-preserving, interoperable cross-border payment infrastructure on Stellar for businesses, individuals and developers, with defensible privacy claims and verifiable financial controls.
+Use navy #031419, deep-surface #092129, mint #80F6DB, cyan #34D3E2 and sky #80B9FF; meet contrast requirements for text and controls. Avoid inventing stablecoin support, fiat partnerships, rates, transaction histories, regulatory status or privacy guarantees. Product pages should discuss the products, not direct visitors to source-code repositories.
 
-## Product names
-
-- **StealthBridge Business** — confidentiality-oriented institutional settlement.
-- **StealthBridge Send** — relationship-private consumer remittance experiences.
-- **StealthBridge Protocol** — on-chain and off-chain protocol architecture.
-- **StealthBridge SDK** — client integrations and bindings.
-
-## Visual identity
-
-Canonical existing asset: [StealthBridge logo SVG](https://github.com/stealthbridge-labs/.github/blob/main/assets/stealthbridge-logo.svg).
-
-Preserve the diagonal bridge mark, deep ocean backgrounds and cyan/mint gradient:
-
-| Token | Color |
-| --- | --- |
-| Background | `#031419` |
-| Surface | `#092129` |
-| Mint accent | `#80F6DB` |
-| Information blue | `#80B9FF` |
-| Primary text | `#EAF9F6` |
-| Muted text | `#99B7B8` |
-
-Refer to the [frontend design system](https://github.com/stealthbridge-labs/stealthbridge-frontend/blob/main/docs/DESIGN-SYSTEM.md) for implementation.
-
-## Trustworthy language
-
-**Good:** research preview, confidentiality objectives, privacy constraints, verifiable testnet proof, multi-corridor infrastructure, issuer-controlled stablecoins under evaluation.
-
-**Avoid without evidence:** completely anonymous, fully private, audited, production-ready, partnered with Stellar/issuer, live remittance, cross-border fiat supported, all stablecoins, guaranteed finality.
-
-We acknowledge upstream open-source research and prior art such as [Tukar](https://github.com/PugarHuda/tukar); design independently and respect licensing.
+## Consistency
+Mirrored lockup: `assets/stealthbridge-logo.svg` in backend/contracts/SDK and `public/brand/stealthbridge-logo.svg` in the frontend. All repository README headers use the lockup; the compact icon remains separate. Brand changes should update every mirror in one coordinated change.
