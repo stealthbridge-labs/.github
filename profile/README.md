@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://github.com/stealthbridge-labs">
-  <img src="https://raw.githubusercontent.com/stealthbridge-labs/stealthbridge-contracts/main/assets/stealthbridge-logo.svg" alt="StealthBridge — Confidential payments. Without borders." width="550" />
+  <img src="https://raw.githubusercontent.com/stealthbridge-labs/.github/main/assets/stealthbridge-logo.svg" alt="StealthBridge — Confidential payments. Without borders." width="550" />
 </a>
 
 <br />
@@ -123,9 +123,9 @@ Read our [contributing guide](https://github.com/stealthbridge-labs/.github/blob
 
 Our documentation standard is simple: **be precise about what is implemented, deployed, verified and still proposed**. Tests and network evidence matter more than marketing claims.
 
-## Open development & Drips
+## Open development
 
-StealthBridge is being developed in public, with the long-term goal of supporting sustainable, community-led open-source development—including potential participation in [Drips](https://www.drips.network/). Contributor governance, repository licensing and funding setup are still being prepared; **no Drips funding account, distribution or mainnet payment service is implied by this page**.
+StealthBridge is developed in public. Explore the source, follow engineering progress, and contribute through scoped issues and reviewed pull requests.
 
 For more detail, see the [architecture RFC](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/RFC-0001-PLATFORM-ARCHITECTURE.md), [threat model](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/THREAT-MODEL-v0.2.md), [privacy feasibility matrix](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/PRIVACY-FEASIBILITY-MATRIX.md) and [roadmap](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/ROADMAP-v0.2.md).
 

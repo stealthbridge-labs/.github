@@ -48,6 +48,6 @@ PRs should include screenshots for UI changes, tests, compatibility notes and a 
 
 ## Licensing and community
 
-All current code is publicly visible, but a cross-repository open-source license decision is still outstanding; public availability should not be mistaken for unrestricted redistribution rights. We intend to finalize licenses, governance and security reporting before Drips onboarding.
+The code is developed publicly; licensing and security policies will be finalized through the organization's normal governance process.
 
 Follow the [Code of Conduct](CODE_OF_CONDUCT.md). Send exploit reports privately via [SECURITY.md](SECURITY.md).

@@ -1,6 +1,6 @@
 # StealthBridge Governance — Early Development
 
-**Provisional framework.** Legal structure, named maintainer roster, repository release authority, contributor licensing and Drips funding governance have not been ratified.
+**Provisional framework.** Legal structure, named maintainer roster, repository release authority, contributor licensing and community governance have not been ratified.
 
 ## Engineering decisions
 
@@ -14,8 +14,8 @@
 
 Contributors propose and test changes through PRs. Maintainers with repository permissions review for correctness, evidence, scope and the threat model. Formal approval and release rules will be published before production-readiness milestones.
 
-## Funding direction
+## Open development
 
-The organization intends to explore sustainable public development, including possible use of [Drips](https://www.drips.network/), after settling licensing, contributor attribution, maintainership and security contact requirements. This document makes no funding or compensation promise.
+Technical decisions, issue proposals and code reviews are managed openly wherever confidentiality and responsible security disclosure permit.
 
 Use public issue/ADR discussion where possible; confidential security discussions must remain private.

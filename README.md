@@ -1,6 +1,6 @@
 # StealthBridge · Organization Community Hub
 
-[![StealthBridge](https://raw.githubusercontent.com/stealthbridge-labs/stealthbridge-contracts/main/assets/stealthbridge-logo.svg)](https://github.com/stealthbridge-labs)
+[![StealthBridge](https://raw.githubusercontent.com/stealthbridge-labs/.github/main/assets/stealthbridge-logo.svg)](https://github.com/stealthbridge-labs)
 
 **Confidential payments. Without borders.**
 
@@ -33,4 +33,4 @@ Repository-specific guides and security policies take precedence over organizati
 
 **Stellar Testnet research and development.** There is no audited production confidential-payments system, real-money transfer service or live fiat payout operation.
 
-A public repository is not automatically open-source licensed; licensing is pending. Drips participation is planned, not currently configured.
+Our development is public, with shared contribution and security guidance. Repository license selection remains a separate governance decision.

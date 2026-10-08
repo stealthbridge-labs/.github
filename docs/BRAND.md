@@ -17,7 +17,7 @@
 
 ## Visual identity
 
-Canonical existing asset: [StealthBridge logo SVG](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/assets/stealthbridge-logo.svg).
+Canonical existing asset: [StealthBridge logo SVG](https://github.com/stealthbridge-labs/.github/blob/main/assets/stealthbridge-logo.svg).
 
 Preserve the diagonal bridge mark, deep ocean backgrounds and cyan/mint gradient:
 
