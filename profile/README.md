@@ -33,6 +33,24 @@ Four focused repositories, designed to move together:
 | [**Contracts**](https://github.com/stealthbridge-labs/stealthbridge-contracts) | Soroban governance, protocol research and smart-contract security |
 | [**SDK**](https://github.com/stealthbridge-labs/stealthbridge-sdk) | TypeScript integrations, typed network clients and future contract adapters |
 
+## How the architecture fits together
+
+```mermaid
+flowchart LR
+  User["Business / Send"] --> Web["Next.js frontend"]
+  Web --> API["Rust/Axum Testnet API"]
+  API --> Stellar["Stellar RPC"]
+  API --> DB[("Neon PostgreSQL")]
+  SDK["TypeScript SDK"] --> API
+  Contract["Three Soroban governance contracts<br/>(source-built, not deployed)"] -. "source-only interface" .-> API
+```
+
+The frontend provides product experiences and consented, read-only wallet context. The backend owns Testnet observations, operator-configured corridor records and internal workflow foundations. The SDK exposes typed consumers. Soroban governs public corridor/policy flags through three locally tested contracts; deploying them with actual verified IDs is a separate milestone.
+
+**Where we are today:** the public site and protected engineering preview build, the backend schema is migrated, the SDK validates network/contract metadata, and three Soroban WASM sources build reproducibly. **Where we are going:** independent Testnet deployment evidence, signed wallet identity, verified privacy rails, approval and reconciliation workflows, then a separately gated financial release. No actual confidential payment or fiat payout is available yet.
+
+Read the [complete platform architecture and milestones](https://github.com/stealthbridge-labs/.github/blob/main/docs/PLATFORM-VISION-AND-ARCHITECTURE.md), plus implementation-specific architecture guides for [frontend](https://github.com/stealthbridge-labs/stealthbridge-frontend/blob/main/docs/ARCHITECTURE-AND-DELIVERY.md), [backend](https://github.com/stealthbridge-labs/stealthbridge-backend/blob/main/docs/ARCHITECTURE-AND-DELIVERY.md), [SDK](https://github.com/stealthbridge-labs/stealthbridge-sdk/blob/main/docs/ARCHITECTURE-AND-DELIVERY.md), and [Soroban](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/ARCHITECTURE-AND-DELIVERY.md).
+
 ## Open development
 
 We're building in public and welcoming thoughtful engineering, product-design, documentation, accessibility and security contributions. Browse [open contributor issues](https://github.com/search?q=org%3Astealthbridge-labs+is%3Aissue+is%3Aopen&type=issues), read our [contribution guide](https://github.com/stealthbridge-labs/.github/blob/main/CONTRIBUTING.md), follow the [integration topology](https://github.com/stealthbridge-labs/.github/blob/main/docs/INTEGRATION-TOPOLOGY.md), or explore a repository's detailed README and roadmap.
