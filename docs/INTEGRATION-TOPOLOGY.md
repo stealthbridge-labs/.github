@@ -2,6 +2,20 @@
 
 **Scope:** A coherent Stellar Testnet integration between `stealthbridge-frontend`, `stealthbridge-backend`, `stealthbridge-contracts` and `stealthbridge-sdk`. This document describes implemented wiring and the hard gates remaining before private transfers, regulated payouts or real-money settlement. It does not claim live contracts, bank relationships or transaction completion.
 
+## October 2026 implementation update
+
+The detailed and current north-star reference is [Platform Vision and Architecture](PLATFORM-VISION-AND-ARCHITECTURE.md). This integration topology remains focused on transport and cross-repository ownership.
+
+- **Database:** the managed Neon PostgreSQL schema has been migrated, but per-deployment runtime database reachability and recovery drills still need independent acceptance.
+- **Wallet:** the technical preview supports consented Freighter public-address connection and a distinct local watch-only Stellar G-address; no signing or identity proof.
+- **Soroban:** the checked-in source inventory now contains **three** contracts: corridor registry, policy registry and a read-only cross-registry governance gate. Their reproducible WASM is tested, but the Testnet deployment manifest remains `not-deployed`.
+- **Runtime:** public RPC observation, corridor discovery and explicit unavailable states exist. SDK and frontend validate the contract source inventory and reject unsupported payment-capability claims.
+- **Financial features:** not operational. No confidential transfer, issuer-backed stablecoin, real FX quote, partner payout or automated transaction signer should be represented as shipped.
+
+### Ownership rule
+
+The contract repository owns source ABI and future deployment attestations; the backend owns HTTP/OpenAPI and server-side secrets; SDK owns typed validation and consumer compatibility; frontend owns consent, presentation, accessibility and the GET-only browser proxy. Do not use an unverified wallet address, registry flag, database corridor row, CI badge or deployment-ready build to infer a real payment rail.
+
 ## Architecture
 
 ```mermaid
