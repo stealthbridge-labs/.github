@@ -25,7 +25,7 @@ flowchart LR
     Engineering --> Wallet[Freighter Testnet wallet context]
     Proxy --> Rust[Rust Axum API]
     Rust --> Stellar[Stellar Testnet JSON-RPC]
-    Rust --> DB[(Optional operator-managed PostgreSQL)]
+    Rust --> DB[(Managed Neon PostgreSQL / local optional DB)]
     Rust --> Manifest[Canonical Soroban manifest and source interface snapshot]
     Manifest -. synced from .-> Contracts[Soroban Registry Sources]
     SDK[TypeScript SDK] --> Rust
@@ -52,7 +52,7 @@ Public marketing has **no payment execution**, source-code CTAs, or dependence o
 
 ## Canonical contract data
 
-The Soroban repository owns `deployments/testnet/manifest.json` and `integrations/public-soroban-interface.v1.json`. The manifest currently declares **no verified deployments**. The interface file lists exact public read methods in `corridor-registry` and `policy-registry`. Its CI verifies method names against the actual Rust source. The backend mirrors these files with a cross-repository CI check and refuses unexpected deployed claims. The SDK validates the backend output and refuses to resolve contract addresses without independent on-chain attestation. Source ABI definitions do not make contracts deployed or usable.
+The Soroban repository owns `deployments/testnet/manifest.json` and `integrations/public-soroban-interface.v1.json`. The manifest currently declares **no verified deployments**. The interface file lists exact public read methods in `corridor-registry`, `policy-registry`, and the read-only `governance-gate`. Its CI verifies method names against the actual Rust source. The backend mirrors these files with a cross-repository CI check and refuses unexpected deployed claims. The SDK validates the backend output and refuses to resolve contract addresses without independent on-chain attestation. Source ABI definitions do not make contracts deployed or usable.
 
 ## Wallet and private-payment separation
 
@@ -87,4 +87,4 @@ Never commit private keys, production database credentials, payout partner token
 
 Each repository has its own CI. Backend CI additionally checks its contract data snapshots against the contracts repo; contracts CI verifies public source method inventory; SDK CI runs typed API, ESM, browser and Next.js package-consumer tests; frontend CI checks production marketing behavior including no codebase redirects, mobile/desktop UI and keyboard/motion behavior. A successful build does not establish an on-chain transfer, deployed contract or live partner.
 
-**Next owner decisions:** Vercel team write access for a backend preview; managed Postgres provider and database scope; private staging domain/access policy; approved Testnet network/RPC; whether the team is ready for a separately reviewed Testnet governance deployment. Do not treat any unresolved decision as completed.
+**Next owner decisions:** independently observe the deployed backend's Neon + Stellar readiness; confirm private staging domain/access policy and rotating RPC secrets; choose the future Testnet governance administrator public account and signer-controlled deployment process; and commission privacy-rail/security feasibility reviews. Managed Neon has been provisioned and migrated; this alone is not proof that every deployed runtime connects successfully. Do not treat unresolved decisions as completed.
