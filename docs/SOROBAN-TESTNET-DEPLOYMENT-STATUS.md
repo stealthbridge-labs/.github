@@ -1,57 +1,35 @@
-# Soroban governance contract deployment status — October 17, 2026
+# Soroban Testnet release — deployed 17 October 2026
 
-> **Not deployed.** StealthBridge's three Soroban governance contracts are
-> compiled and reproducibly verified, but there are no independently attested
-> Testnet contract addresses or submitted deployment transactions.
+**Three actual public governance contracts are deployed and code-verified on Stellar Testnet.** This is governance/configuration infrastructure only, not a privacy proof, fund-transfer bridge, token issuer, fiat payout or platform-fee collector.
 
-## What was verified
+## Contract identities
 
-The [Contracts repository](https://github.com/stealthbridge-labs/stealthbridge-contracts)
-publishes a three-contract WASM/ABI operator kit from
-[successful CI run 39030590122](https://github.com/stealthbridge-labs/stealthbridge-contracts/actions/runs/39030590122)
-at source commit `130c577ef6f44412a249d43e3e459cedecb5c970`.
+| Contract | Live Testnet C-address | Deployed ledger | Transaction |
+| --- | --- | --- | --- |
+| CorridorRegistry | `CDS6HBE6YJSZTRG3VR2HLCNHWJZMKB43BLFFEHEH3Z76WXAF46LW7JOB` | 5244269 | [`0ac409…43e5`](https://stellar.expert/explorer/testnet/tx/0ac4094247fd50872d079c9637b0975f825f99574e6722c9c69739d8c5c143e5) |
+| PolicyRegistry | `CBXWEA5PMDTBN5AN7FJYGGAPIWLRKXYHWLVWG5WOXH3HSRDB4RYTJBN5` | 5244283 | [`34c2e8…e118`](https://stellar.expert/explorer/testnet/tx/34c2e84cad5be5181b7e1964d4e48e2c26ca021583373922f821c0038abce118) |
+| GovernanceGate | `CD2KIMDRYJMKGO5SMIBOQP6ADPW5I4THNZFGXWYLIPGSXAI5NRXVAPKV` | 5244293 | [`946880…341`](https://stellar.expert/explorer/testnet/tx/9468801411a6bbb7fb2966c0225057bb4f3c8a7113aa687c0a0be744a7c5b341) |
 
-| Contract | Locally verified WASM SHA-256 | Deployment |
-| --- | --- | --- |
-| CorridorRegistry | `588d17f99850272f2f18e6ee407d94329b4f8ae415c2f6b71993cf59f4139099` | Pending |
-| PolicyRegistry | `856186ba3dca1feff010c670bd1ae9818bf69e284304273f943745603b9a7912` | Pending |
-| GovernanceGate | `66b40fe5ee4f704a91acf39922ed130cc1eb4fc0cdc3c5ee5a30614921f4aa81` | Pending |
+- **Build provenance:** [CI run 39030590122](https://github.com/stealthbridge-labs/stealthbridge-contracts/actions/runs/39030590122), clean source revision `130c577ef6f44412a249d43e3e459cedecb5c970`.
+- **Network:** Stellar Testnet; passphrase `Test SDF Network ; September 2015`. Observed protocol 29.
+- **Signer and administrator:** `GC3YRVLB7IN7SNUYVWFUC6OD3QWJXCUZ4HOBNIPVGY7BZDVOYMDNX5TN`, configured as local CLI identity `operator_local` in OS secure storage. No private material was exported to the repository, CI or this report.
+- **Earlier Freighter account:** `GBBCOFZZ3RDQHTC662EVM3UO5SAXQEZB6DL64HLEJYEYJ4KBVL3CDLTE` is **not** the administrator of this release.
+- **Verification performed:** Stellar Testnet Horizon confirmed all deployment and upload transactions successful; independent read-only CLI commands fetched bytecode from the three C-addresses and checked their bytes against the reproducible artifacts; registry admins and paused states were read; GovernanceGate's actual two registry addresses and admin were read and matched exactly.
 
-The CI provenance pins Rust 1.91.0, Soroban SDK 27.0.6,
-Stellar CLI 27.1.0, `wasm32v1-none`, and two identical isolated WASM builds.
-`verify_artifacts.py` and the offline `preflight_testnet.py` passed
-against the exact CI kit. The planned public Testnet administrator exists
-and was funded when checked on October 17, but ownership has not been
-authenticated. This does not constitute signer authorization.
+## Pinned bytecode
 
-On the connected operator workstation, CLI v27.1.0 was installed and its
-release archive hash checked. **No signing identity was configured**;
-`operator_local` did not resolve. Live public Soroban RPC probes returned
-HTTP 403 from this workstation, preventing confirmation of current RPC
-network identity, protocol and ledger freshness. Nothing was deployed or
-signed.
+| Contract | On-chain SHA-256 of fetched WASM |
+| --- | --- |
+| CorridorRegistry | `588d17f99850272f2f18e6ee407d94329b4f8ae415c2f6b71993cf59f4139099` |
+| PolicyRegistry | `856186ba3dca1feff010c670bd1ae9818bf69e284304273f943745603b9a7912` |
+| GovernanceGate | `66b40fe5ee4f704a91acf39922ed130cc1eb4fc0cdc3c5ee5a30614921f4aa81` |
 
-## Publication and integration boundary
+Review the full [Contracts deployment evidence](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/deployments/testnet/VERIFIED-GOVERNANCE-RELEASE-2026-10-17.md) and [machine-readable observation](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/deployments/testnet/governance-deployment-evidence.v2.json).
 
-Only publish **real** C-addresses, deployment transaction hashes, verified
-contract WASM hashes, administrator state and governance-gate dependency
-bindings after the local signing ceremony and independent Testnet
-verification have succeeded. The current canonical
-[deployment manifest](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/deployments/testnet/manifest.json)
-correctly remains `not-deployed`. Its legacy schema v1 cannot attest all
-three contracts; that validation gap must be resolved before upgrading the
-canonical deployment statement.
+## What is *not* available
 
-The frontend, SDK and backend **must not infer on-chain availability** from
-CI artifact success, a public wallet, or the contract source interface.
-Privacy verification, token transfers, custody, cross-border payout and
-financial settlement are still **not implemented or enabled**.
+The legacy canonical deployment manifest v1 cannot represent three deployed contracts and **currently still says `not-deployed` for compatibility**. This stale old manifest must not be used as evidence that the chain deployments failed, and the new observation record must not be silently substituted into an incompatible backend or SDK client. Migrate consumers through a separately reviewed canonical schema-v2 release with real-time RPC revalidation.
 
-For the full SHA-256/ABI table, operator authorization gates and post-deploy
-verification steps, use the [contracts release evidence](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/deployments/testnet/TESTNET-RELEASE-STATUS-2026-10-17.md)
-and [operator runbook](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/deployments/testnet/OPERATOR-DEPLOYMENT-RUNBOOK.md).
+**No private payment rail, custody, platform fee collection, fiat payout, user wallet signing, or Mainnet deployment is authorized or enabled by these contracts.** The proposed first platform fee is a 10 basis-point (0.10%) transparent SDK *quote*, capped at 50 basis points (0.50%), with zero collection ability until a separate tested token/settlement contract is approved. This commercial-rate proposal is not a currently charged fee.
 
-**After a verified deployment**, this page should be revised with an evidence
-table of all three real Testnet C-addresses and transaction hashes, independent
-bytecode checks and the dependency references actually observed on-chain;
-until then those fields are intentionally absent.
+The public contracts' on-chain storage can eventually expire; successful deployment does not replace TTL monitoring, pause/recovery drills, independent security review, asset issuer diligence and operator key management.
