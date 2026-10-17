@@ -10,6 +10,23 @@
 
 ---
 
+## Soroban Testnet deployment status
+
+**Three governance contracts are source-built and locally verified; no
+on-chain Testnet deployment is attested yet.** The October 17 CI release
+(`130c577e`) verified the CorridorRegistry, PolicyRegistry and
+GovernanceGate WASM/ABI artifacts. The operator machine now has pinned
+Stellar CLI 27.1.0, but no authorized `operator_local` signer was found,
+and direct public RPC probes returned HTTP 403.
+
+We will only publish live contract C-addresses, deployment transactions,
+on-chain bytecode comparisons and constructor bindings **after** the
+approved signing ceremony and independent verification. Our
+[deployment status report](../docs/SOROBAN-TESTNET-DEPLOYMENT-STATUS.md)
+and [contract operator runbook](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/deployments/testnet/OPERATOR-DEPLOYMENT-RUNBOOK.md)
+describe the evidence and outstanding gates. Payment execution stays
+disabled.
+
 ## Why StealthBridge?
 
 Moving value across borders should feel connected and straightforward, without revealing more financial information than necessary. We're building a modular platform that brings together **thoughtful privacy, dependable settlement infrastructure, and product experiences designed for real businesses and people**.
