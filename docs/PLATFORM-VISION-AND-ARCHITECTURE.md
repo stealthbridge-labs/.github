@@ -4,6 +4,34 @@
 >
 > This document describes the intended system **and labels what is currently implemented**. It is not an announcement of live confidential payments, audited privacy, licensed fiat payout, Mainnet availability, or a deployed Soroban contract.
 
+
+## Deployed Testnet contract integration — October 2026
+
+On **17 October 2026**, StealthBridge deployed three real public Soroban governance contracts on Stellar Testnet: `CorridorRegistry`, `PolicyRegistry` and `GovernanceGate`. The [deployment release report](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/deployments/testnet/VERIFIED-GOVERNANCE-RELEASE-2026-10-17.md) lists actual C-addresses, deployment transactions, WASM hashes and constructor/admin readbacks. The historical [observation record](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/deployments/testnet/governance-deployment-evidence.v2.json) is **not** the canonical trusted release manifest; the checked-in v1 `manifest.json` still says `not-deployed` and requires separately reviewed migration.
+
+### Working read-only vertical slice
+
+```text
+Business / Send / Developer-facing public pages
+         |
+Next.js gated preview: /preview/governance and /preview/activity
+         | GET /api/bridge/* (allowlisted, no secrets in browser)
+         v
+Rust Axum backend ------------- Neon PostgreSQL (corridors, observer activity)
+         |
+         | GET /v1/governance/release: historical tx confirmations
+         | GET /v1/governance/code: current instance executable / TTL
+         | GET /v1/governance/admin: current public admin / pause state
+         v
+Stellar Testnet RPC -> CorridorRegistry / PolicyRegistry / GovernanceGate
+         ^
+TypeScript SDK: strict schema and cross-observation validation of API data
+```
+
+**Implemented boundaries:** frontend/server proxy reads public backend endpoints; backend consults real Stellar Testnet RPC and Neon where configured; SDK provides typed validation and read-only interfaces. A successful deployment and matched public contract code/admin are not authorization for financial operations. No fee vault, fee claim, private transfer proof, real-money settlement or fiat payout is enabled.
+
+**Next integration gates:** canonical reviewed/signed three-contract manifest, deployer key recovery and safe on-chain administrator rotation, repeated runtime RPC freshness and hash verification, shared SDK/OpenAPI tests, explicit service degradation UI, verified privacy rail and asset/issuer review, audited contracts and isolated release authorization. Keep Testnet-only and disabled-write invariants throughout.
+
 ## North star
 
 StealthBridge is being developed as a modular, privacy-conscious payment platform for two distinct journeys:
