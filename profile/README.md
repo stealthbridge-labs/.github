@@ -59,7 +59,9 @@ Our long-term design combines privacy-preserving payment technology with explici
 
 **Implemented engineering foundations:** a public website, connected frontend/SDK read models, backend APIs and reconciliation foundations, and three deployed **public Soroban governance contracts** on Stellar Testnet: `CorridorRegistry`, `PolicyRegistry`, and `GovernanceGate`. Their deployment receipts and public code observations are documented independently.
 
-**In progress:** production API runtime reliability, a canonical signed contract-release manifest, wallet identity and operator recovery, proof of privacy primitives, resilient corridor operations, and end-to-end live staging acceptance.
+**In progress:** resilient observer and reconciliation operations, a canonical signed contract-release manifest, wallet identity and operator recovery, proof of privacy primitives, and independently verified staging and security acceptance.
+
+**Read-only integration verified:** our deployed Rust API answers health, real Testnet network, and public Soroban governance requests; the frontend preview successfully reads the backend's same-ledger governance snapshot. Observer availability and financial execution have separate acceptance gates.
 
 **Not yet offered:** private-value transfers, real-money remittances, custody, fiat payouts, and on-chain platform-fee collection. Deployment of public governance contracts is **not** proof that a confidential-payments rail is operational.
 
