@@ -15,7 +15,7 @@
 **CorridorRegistry, PolicyRegistry and GovernanceGate are now deployed on
 Stellar Testnet.** Their actual C-addresses, successful transaction hashes,
 bytecode readbacks and constructor bindings are documented in our
-[verified Testnet release report](../docs/SOROBAN-TESTNET-DEPLOYMENT-STATUS.md)
+[verified Testnet release report](https://github.com/stealthbridge-labs/.github/blob/main/docs/SOROBAN-TESTNET-DEPLOYMENT-STATUS.md)
 and [Contracts deployment receipts](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/deployments/testnet/VERIFIED-GOVERNANCE-RELEASE-2026-10-17.md).
 
 The administrator is the secure-store CLI identity `operator_local` at
@@ -24,6 +24,8 @@ and does not govern these instances. Only public governance is live; no private
 asset transfer, custody, payout or platform fee collection is enabled.
 The legacy v1 canonical deployment manifest is pending a reviewed three-contract
 migration before frontend/backend/SDK may consume live addresses.
+
+**End-to-end verified-read path:** protected `/preview/governance` → Next.js `GET /api/bridge/v1/governance/{release,code,admin}` → Rust/Axum backend → Testnet RPC / historical transaction receipts → public deployed Soroban instances. `/preview/activity` uses a bounded public observer journal backed by PostgreSQL. The TypeScript SDK validates the corresponding backend response models; the frontend does not request signing authority. See the [integration topology](https://github.com/stealthbridge-labs/.github/blob/main/docs/INTEGRATION-TOPOLOGY.md). Deployment does **not** mean confidential transfers or fee collection are live.
 
 ## Why StealthBridge?
 
@@ -56,13 +58,15 @@ flowchart LR
   Web --> API["Rust/Axum Testnet API"]
   API --> Stellar["Stellar RPC"]
   API --> DB[("Neon PostgreSQL")]
+  Web -->|"GET-only proxy"| API
+  Contract["Deployed CorridorRegistry / PolicyRegistry / GovernanceGate"] --> Stellar
   SDK["TypeScript SDK"] --> API
-  Contract["Three Soroban governance contracts<br/>(source-built, not deployed)"] -. "source-only interface" .-> API
+  Contract["Three deployed Soroban governance contracts"] --> Stellar
 ```
 
-The frontend provides product experiences and consented, read-only wallet context. The backend owns Testnet observations, operator-configured corridor records and internal workflow foundations. The SDK exposes typed consumers. Soroban governs public corridor/policy flags through three locally tested contracts; deploying them with actual verified IDs is a separate milestone.
+The frontend provides product experiences and consented, read-only wallet context. The backend owns Testnet observations, operator-configured corridor records and internal workflow foundations. The SDK exposes typed consumers. Soroban hosts three actually deployed, historically verified public governance contracts; the Rust API now exposes read-only deployment receipts and current code/administrator observations for the frontend preview.
 
-**Where we are today:** the public site and protected engineering preview build, the backend schema is migrated, the SDK validates network/contract metadata, and three Soroban WASM sources build reproducibly. **Where we are going:** independent Testnet deployment evidence, signed wallet identity, verified privacy rails, approval and reconciliation workflows, then a separately gated financial release. No actual confidential payment or fiat payout is available yet.
+**Where we are today:** the public site and gated engineering preview exist; the backend reads real Testnet network, governance and contract-activity observations; the SDK validates typed API evidence; and three public governance contracts have deployed Testnet IDs and observed code/admin state. **Where we are going:** a reviewed canonical three-contract manifest, independent release attestations, secure operator succession, wallet identity, verified privacy rails and production-grade reconciliation, then a separately gated financial release. No actual confidential payment or fiat payout is available yet.
 
 Read the [complete platform architecture and milestones](https://github.com/stealthbridge-labs/.github/blob/main/docs/PLATFORM-VISION-AND-ARCHITECTURE.md), plus implementation-specific architecture guides for [frontend](https://github.com/stealthbridge-labs/stealthbridge-frontend/blob/main/docs/ARCHITECTURE-AND-DELIVERY.md), [backend](https://github.com/stealthbridge-labs/stealthbridge-backend/blob/main/docs/ARCHITECTURE-AND-DELIVERY.md), [SDK](https://github.com/stealthbridge-labs/stealthbridge-sdk/blob/main/docs/ARCHITECTURE-AND-DELIVERY.md), and [Soroban](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/docs/ARCHITECTURE-AND-DELIVERY.md).
 
