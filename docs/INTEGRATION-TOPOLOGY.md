@@ -1,6 +1,6 @@
 # StealthBridge: Four-Repository Integration Topology
 
-**Scope:** A coherent Stellar Testnet integration between `stealthbridge-frontend`, `stealthbridge-backend`, `stealthbridge-contracts` and `stealthbridge-sdk`. This document describes implemented wiring and the hard gates remaining before private transfers, regulated payouts or real-money settlement. It does not claim live contracts, bank relationships or transaction completion.
+**Scope:** A coherent Stellar Testnet integration between `stealthbridge-frontend`, `stealthbridge-backend`, `stealthbridge-contracts` and `stealthbridge-sdk`. This document describes implemented wiring and the hard gates remaining before private transfers, regulated payouts or real-money settlement. It documents three deployed *public governance* contracts, but does not claim live confidential-payment contracts, bank relationships or completed transfers.
 
 
 ## Deployed Testnet contract integration — October 2026
@@ -58,7 +58,7 @@ flowchart LR
     Manifest -. synced from .-> Contracts[Soroban Registry Sources]
     SDK[TypeScript SDK] --> Rust
     SDK --> ABI[Validated Soroban source metadata]
-    ABI -. no deployed contract address .-> Contracts
+    ABI -. legacy source endpoint; deployed governance observed separately .-> Contracts
 ```
 
 Public marketing has **no payment execution**, source-code CTAs, or dependence on Stellar RPC. The technical preview is opt-in; it exposes only read-only backend data and wallet network state.
@@ -113,6 +113,6 @@ Never commit private keys, production database credentials, payout partner token
 
 ## Verification
 
-Each repository has its own CI. Backend CI additionally checks its contract data snapshots against the contracts repo; contracts CI verifies public source method inventory; SDK CI runs typed API, ESM, browser and Next.js package-consumer tests; frontend CI checks production marketing behavior including no codebase redirects, mobile/desktop UI and keyboard/motion behavior. A successful build does not establish an on-chain transfer, deployed contract or live partner.
+Each repository has its own CI. Backend CI additionally checks its contract data snapshots against the contracts repo; contracts CI verifies public source method inventory; SDK CI runs typed API, ESM, browser and Next.js package-consumer tests; frontend CI checks production marketing behavior including no codebase redirects, mobile/desktop UI and keyboard/motion behavior. A successful build does not establish an on-chain transfer, verified payment contract or live partner; the separate three-contract public governance deployment is already evidenced on Testnet.
 
 **Next owner decisions:** independently observe the deployed backend's Neon + Stellar readiness; confirm private staging domain/access policy and rotating RPC secrets; choose the future Testnet governance administrator public account and signer-controlled deployment process; and commission privacy-rail/security feasibility reviews. Managed Neon has been provisioned and migrated; this alone is not proof that every deployed runtime connects successfully. Do not treat unresolved decisions as completed.
