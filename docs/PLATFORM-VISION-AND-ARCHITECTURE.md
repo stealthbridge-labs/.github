@@ -2,7 +2,7 @@
 
 > **Engineering reference · October 2026 · Stellar Testnet-first**
 >
-> This document describes the intended system **and labels what is currently implemented**. It is not an announcement of live confidential payments, audited privacy, licensed fiat payout, Mainnet availability, or a deployed Soroban contract.
+> This document describes the intended system **and labels what is currently implemented**. It is not an announcement of live confidential payments, audited privacy, licensed fiat payout, Mainnet availability, or a deployed payment/settlement Soroban contract; three public governance contracts are deployed to Testnet.
 
 
 ## Deployed Testnet contract integration — October 2026
@@ -79,7 +79,7 @@ flowchart TB
   Gate -. "Not deployed yet" .-> Privacy
 ```
 
-**Important:** arrows to registry sources are architectural intent, **not deployed contract invocations**. The three Rust/Soroban crates compile and are tested locally; the checked-in Testnet manifest still says `not-deployed`.
+**Important:** source-interface arrows are not live contract invocations. Three public governance contracts have verified historical Testnet deployments and separate Rust API code/administrator observations, but the checked-in legacy canonical manifest still says `not-deployed` pending reviewed migration. No private payment rail is deployed.
 
 ## Ownership and integration contracts
 
