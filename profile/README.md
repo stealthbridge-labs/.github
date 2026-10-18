@@ -54,14 +54,12 @@ Four focused repositories, designed to move together:
 
 ```mermaid
 flowchart LR
-  User["Business / Send"] --> Web["Next.js frontend"]
-  Web --> API["Rust/Axum Testnet API"]
-  API --> Stellar["Stellar RPC"]
-  API --> DB[("Neon PostgreSQL")]
-  Web -->|"GET-only proxy"| API
-  Contract["Deployed CorridorRegistry / PolicyRegistry / GovernanceGate"] --> Stellar
-  SDK["TypeScript SDK"] --> API
-  Contract["Three deployed Soroban governance contracts"] --> Stellar
+  User["Business / Send / Developer"] --> Web["Next.js frontend"]
+  Web -->|"GET-only /api/bridge"| API["Rust Axum backend"]
+  SDK["TypeScript SDK"] -->|"Typed GET observations"| API
+  API -->|"Current ledger / contract state"| Stellar["Stellar Testnet RPC"]
+  API -->|"Corridors and event journal"| DB[("Neon PostgreSQL")]
+  Stellar --> Contract["Deployed CorridorRegistry / PolicyRegistry / GovernanceGate"]
 ```
 
 The frontend provides product experiences and consented, read-only wallet context. The backend owns Testnet observations, operator-configured corridor records and internal workflow foundations. The SDK exposes typed consumers. Soroban hosts three actually deployed, historically verified public governance contracts; the Rust API now exposes read-only deployment receipts and current code/administrator observations for the frontend preview.
