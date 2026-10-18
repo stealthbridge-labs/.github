@@ -9,7 +9,7 @@
 
 On **17 October 2026**, StealthBridge deployed three real public Soroban governance contracts on Stellar Testnet: `CorridorRegistry`, `PolicyRegistry` and `GovernanceGate`. The [deployment release report](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/deployments/testnet/VERIFIED-GOVERNANCE-RELEASE-2026-10-17.md) lists actual C-addresses, deployment transactions, WASM hashes and constructor/admin readbacks. The historical [observation record](https://github.com/stealthbridge-labs/stealthbridge-contracts/blob/main/deployments/testnet/governance-deployment-evidence.v2.json) is **not** the canonical trusted release manifest; the checked-in v1 `manifest.json` still says `not-deployed` and requires separately reviewed migration.
 
-### Working read-only vertical slice
+### Implemented read-only integration (live backend runtime acceptance pending)
 
 ```text
 Business / Send / Developer-facing public pages
@@ -27,6 +27,8 @@ Stellar Testnet RPC -> CorridorRegistry / PolicyRegistry / GovernanceGate
          ^
 TypeScript SDK: strict schema and cross-observation validation of API data
 ```
+
+**Operational verification — 18 October 2026:** The four repositories' current integration commits are on `main` and source-level CI passes, but the deployed Vercel Rust functions return `500 INTERNAL_FUNCTION_INVOCATION_FAILED` on `/health`, `/v1/network`, and even a minimal `/__runtime_probe`. A separate Node control endpoint succeeds in the same Vercel project. This narrows the issue to Rust function invocation/packaging rather than validating the backend's RPC or Neon connectivity. The [runtime release-gate investigation](https://github.com/stealthbridge-labs/stealthbridge-backend/blob/main/docs/VERCEL-RUNTIME-AND-RELEASE-GATE.md) tracks acceptance. **Frontend ↔ backend ↔ live chain must not be called production healthy** until deployed HTTP tests pass. The backend includes a same-ledger `GET /v1/governance/snapshot` reader with strict SDK/frontend validation, but its live request also remains blocked by the Rust runtime. The three Soroban governance deployments are independently real; the canonical manifest is not yet an approved financial-release manifest. No payment execution, fee collection or custody is enabled.
 
 **Implemented boundaries:** frontend/server proxy reads public backend endpoints; backend consults real Stellar Testnet RPC and Neon where configured; SDK provides typed validation and read-only interfaces. A successful deployment and matched public contract code/admin are not authorization for financial operations. No fee vault, fee claim, private transfer proof, real-money settlement or fiat payout is enabled.
 
