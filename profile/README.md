@@ -1,82 +1,92 @@
 <div align="center">
 
 <a href="https://stealthbridge.vercel.app/">
-  <img src="https://raw.githubusercontent.com/stealthbridge-labs/.github/main/assets/stealthbridge-logo.svg" alt="StealthBridge" width="620" />
+  <img src="https://raw.githubusercontent.com/stealthbridge-labs/.github/main/assets/stealthbridge-logo.svg" alt="StealthBridge — Confidential payments. Without borders." width="620" />
 </a>
 
 ### Confidential payments. Without borders.
 
-**Privacy-conscious cross-border payments for businesses, people, and developers.**
+**One connected cross-border payments experience, designed to protect legitimate personal and commercial information.**
 
-[Explore StealthBridge](https://stealthbridge.vercel.app/) · [For businesses](https://stealthbridge.vercel.app/business) · [For individuals](https://stealthbridge.vercel.app/send) · [Platform](https://stealthbridge.vercel.app/platform)
+[Explore the product](https://stealthbridge.vercel.app/) · [Personal Send](https://stealthbridge.vercel.app/send) · [Business](https://stealthbridge.vercel.app/business) · [Our approach](https://stealthbridge.vercel.app/platform)
 
 </div>
 
 ---
 
-## The problem we're solving
+## What we're building
 
-International payments connect markets, but the systems behind them often expose commercially sensitive information, fragment the payment journey across providers, and make settlement activity difficult to reconcile. Businesses need stronger control over how payment information is shared; people deserve a simpler cross-border experience without unnecessary exposure.
+Global payments should not force a choice between usable software, operational accountability and reasonable privacy. Individuals need a straightforward way to prepare cross-border transfers, while businesses need clear organization access, controlled payment workflows and reliable reconciliation without exposing sensitive commercial information unnecessarily.
 
-**StealthBridge is building one connected infrastructure layer for moving value across borders with privacy by design, verifiable settlement state, and accountable controls.** Confidentiality should protect legitimate financial information—not obscure required compliance, risk management, or audit access.
+**StealthBridge is building a customer-first product on Stellar, with confidential settlement infrastructure as its long-term goal.** The design distinguishes sensitive information from necessary issuer, regulatory, audit and risk-management access. Privacy needs independently reproduced cryptographic evidence; neither a marketing claim nor a successful ledger query is sufficient.
 
-## One platform. Three experiences.
+## Product experiences
 
-| Experience | Built for | What we're creating |
-| :-- | :-- | :-- |
-| **[StealthBridge Business](https://stealthbridge.vercel.app/business)** | Payment companies, treasury teams, and businesses | Confidentiality-oriented B2B settlement workflows, corridor discovery, operational controls, and reconciliation |
-| **[StealthBridge Send](https://stealthbridge.vercel.app/send)** | Individuals and families | A clear, wallet-aware remittance journey with privacy-conscious payment relationships |
-| **[StealthBridge Platform](https://stealthbridge.vercel.app/platform)** | Developers and payment integrators | APIs, TypeScript tooling, Stellar observations, governance, and future payment integrations |
+| Experience | For whom | What works now |
+| --- | --- | --- |
+| **[Personal Send](https://stealthbridge.vercel.app/send)** | Individuals and families | Explore actual configured Testnet routes, check a public recipient with consent, and prepare local transfer details |
+| **[Business](https://stealthbridge.vercel.app/business)** | Organizations, treasury and payment teams | Signed-in, Neon-backed pending applications and membership views; individual and batch payment planning |
+| **[Platform](https://stealthbridge.vercel.app/platform)** | Developers and future payment integrators | Read-only Testnet API and TypeScript SDK, public Soroban governance observation, and an explicit roadmap to secure integration |
 
-## Built as one connected system
+The authenticated app is organized into **Home**, **Personal**, **Business**, and **Account** areas. The Business workspace keeps onboarding and team access distinct from the single-payment and CSV batch planners. Missing data is shown as unavailable or empty, never as a fabricated payment, quote or balance.
 
-StealthBridge is developed across four specialized codebases that share a common product direction:
+[Current product structure and customer journey](https://github.com/stealthbridge-labs/stealthbridge-frontend/blob/main/docs/PRODUCT-ARCHITECTURE-AND-JOURNEYS.md).
+
+## One system, four engineering repositories
 
 | Repository | Responsibility |
-| :-- | :-- |
-| **[Frontend](https://github.com/stealthbridge-labs/stealthbridge-frontend)** | Next.js web experiences, accessible interfaces, wallet UX, and server-side API bridge |
-| **[Backend](https://github.com/stealthbridge-labs/stealthbridge-backend)** | Rust/Axum APIs, Stellar ledger and contract observations, policy reads, and operational persistence |
-| **[Smart contracts](https://github.com/stealthbridge-labs/stealthbridge-contracts)** | Rust/Soroban governance and the security foundations for future on-chain financial execution |
-| **[TypeScript SDK](https://github.com/stealthbridge-labs/stealthbridge-sdk)** | Typed integration surface and independently validated read-only API consumers |
+| --- | --- |
+| **[Frontend](https://github.com/stealthbridge-labs/stealthbridge-frontend)** | Next.js customer product, consent-based wallet sign-in, responsive UX and authenticated API bridge |
+| **[Backend](https://github.com/stealthbridge-labs/stealthbridge-backend)** | Rust/Axum Testnet RPC reads, Neon/PostgreSQL-backed account and organization records, corridor metadata and operational journal |
+| **[TypeScript SDK](https://github.com/stealthbridge-labs/stealthbridge-sdk)** | Pinned, strict read-only API response models and safe exact-value utilities |
+| **[Soroban contracts](https://github.com/stealthbridge-labs/stealthbridge-contracts)** | Rust/WASM public governance, source-level policy tests and separately bounded smart-account/privacy research |
 
 ```text
- Business • Send • Developer applications
-                    |
-         Next.js product frontend
-                    | safe server-side GET bridge
-                    v
-        Rust/Axum platform API <------ TypeScript SDK
-                    |
-       +------------+-------------+
-       |                          |
- Stellar RPC + deployed       Neon PostgreSQL
- Soroban governance           observations / journal
+Customer-facing Next.js app
+   ├─ Local amount/recipient/reference draft state
+   ├─ SEP-53-style signed wallet challenge → authenticated session
+   └─ Same-origin public/account API → Rust/Axum service
+                                            ├─ Stellar Testnet RPC
+                                            └─ Neon PostgreSQL
+TypeScript SDK → reviewed, read-only protocol models
+Three public Soroban governance contracts → separately verified Testnet records
+Future audited smart accounts + confidential rail + issuer + payout reconciliation
 ```
 
-Our long-term design combines privacy-preserving payment technology with explicit authorization, ledger observability, risk controls, and real-world corridor integrations.
+All four repositories use strict Testnet-only verification and do not grant financial execution just because infrastructure responds successfully.
 
-## What is real today—and what comes next
+## Delivered engineering foundations
 
-**Implemented engineering foundations:** a public website, connected frontend/SDK read models, backend APIs and reconciliation foundations, and three deployed **public Soroban governance contracts** on Stellar Testnet: `CorridorRegistry`, `PolicyRegistry`, and `GovernanceGate`. Their deployment receipts and public code observations are documented independently.
+- Deployed Next.js product with real customer and business account routes, verified signed-message sign-in and account preferences.
+- Real Neon-backed pending organization applications, current membership views and optional viewer invitations.
+- Server-filtered Testnet corridor discovery, public recipient presence lookup, fresh network and database preflight, and browser-only individual/CSV batch planning.
+- Rust API with structured errors, safe query bounds, production schema migration controls and a testable authenticated browser-to-backend boundary.
+- **12/12 SQLx migrations recorded as applied to production Neon on October 31, 2026** through a protected workflow. Schema readiness does not grant payment approval.
+- Three **public** Soroban governance contracts independently verified on Stellar Testnet after the October 17, 2026 deployment.
+- Pinned **read-only** smart-account WASM, WebAuthn verifier and policy preflight with live TTL checks. **No StealthBridge customer smart account has been deployed by that preflight.**
 
-**In progress:** resilient observer and reconciliation operations, a canonical signed contract-release manifest, wallet identity and operator recovery, proof of privacy primitives, and independently verified staging and security acceptance.
+The canonical v1 manifest is a legacy integration record and needs a separately approved replacement; newly added contract source methods are **not automatically deployed** to historical instances.
 
-**Read-only integration verified:** our deployed Rust API answers health, real Testnet network, and public Soroban governance requests; the frontend preview successfully reads the backend's same-ledger governance snapshot. Observer availability and financial execution have separate acceptance gates.
+Read the [cross-repository topology](docs/INTEGRATION-TOPOLOGY.md), [architecture and product direction](docs/PLATFORM-VISION-AND-ARCHITECTURE.md), and [governance release record](docs/SOROBAN-TESTNET-DEPLOYMENT-STATUS.md).
 
-**Not yet offered:** private-value transfers, real-money remittances, custody, fiat payouts, and on-chain platform-fee collection. Deployment of public governance contracts is **not** proof that a confidential-payments rail is operational.
+## What isn't enabled
 
-Discover the [system architecture](https://github.com/stealthbridge-labs/.github/blob/main/docs/PLATFORM-VISION-AND-ARCHITECTURE.md), [cross-repository integration map](https://github.com/stealthbridge-labs/.github/blob/main/docs/INTEGRATION-TOPOLOGY.md), and [verified governance deployment record](https://github.com/stealthbridge-labs/.github/blob/main/docs/SOROBAN-TESTNET-DEPLOYMENT-STATUS.md).
+**StealthBridge does not yet offer real-money deposits, confidential fund transfers, a trusted FX quote, verified liquidity, regulated bank payouts, automated fee claiming, operational customer custody, or a cryptographically verified privacy rail.** The customer application is a **Testnet account-management and payment-planning foundation**.
 
-## Build with us
+Before an actual customer-money pilot, we must demonstrate independently verified confidentiality; real asset issuer and payout relationships; reviewed smart-account authorization, passkey binding and lost-device recovery; compliant organization/recipient eligibility; signed and expiring quotes; chain finality and external payout reconciliation; and operational audit/security evidence.
 
-We welcome thoughtful contributions in **Rust, Soroban, TypeScript, product design, accessibility, developer tooling, documentation, and security**. Start with our [contribution guide](https://github.com/stealthbridge-labs/.github/blob/main/CONTRIBUTING.md), browse the [organization repositories](https://github.com/orgs/stealthbridge-labs/repositories), or use our [security reporting guide](https://github.com/stealthbridge-labs/.github/blob/main/SECURITY.md).
+## Work with us
+
+We welcome technical and product contributions in **Rust/Soroban, TypeScript, accessibility, Stellar smart-account security, payment integrations, privacy verification and documentation**. Each repository README has accurate setup and release boundaries. Contributions must not include operator wallets, recovery phrases, secrets, private witnesses or fake customer payment states.
+
+[Contribution guide](CONTRIBUTING.md) · [Security reporting](SECURITY.md) · [Repository directory](https://github.com/orgs/stealthbridge-labs/repositories)
 
 <div align="center">
 
 ---
 
-**Move value. Not exposure.**
+**Build trust into payments. Protect what matters.**
 
-[Website](https://stealthbridge.vercel.app/) · [GitHub](https://github.com/stealthbridge-labs) · [Contribute](https://github.com/stealthbridge-labs/.github/blob/main/CONTRIBUTING.md)
+[Website](https://stealthbridge.vercel.app/) · [Engineering organization](https://github.com/stealthbridge-labs)
 
 </div>
